@@ -1,7 +1,6 @@
-package com.User_Authentication.entity;
+package com.User_Authentication.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,20 +10,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private Long id;
-
-    @NotBlank
     @Size(min = 3, message = "This field has a minimum of {min} characters")
     private String firstName;
 
-    @NotBlank
     @Size(min = 3, message = "This field has a minimum of {min} characters")
     private String lastName;
 
@@ -32,11 +25,9 @@ public class User {
     @Column(nullable = true, unique = true)
     private String cpf;
 
-    @NotBlank
     @DateTimeFormat(pattern = "dd/mm/aaaa")
     private LocalDateTime birthdate;
 
-    @NotBlank
     private boolean active;
 
     public void setCpf(String cpf){
